@@ -36,7 +36,7 @@ const ProductDetail = () => {
   const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
       <div className="container mx-auto px-4 py-8">
@@ -47,10 +47,10 @@ const ProductDetail = () => {
               <img 
                 src={product.images[0]} 
                 alt={product.title}
-                className="w-full h-96 object-cover rounded-lg bg-white shadow-sm"
+                className="w-full h-96 object-cover rounded-lg bg-white shadow-sm border border-gray-200"
               />
               {discount > 0 && (
-                <Badge className="absolute top-4 left-4 bg-red-500 text-lg px-3 py-1">
+                <Badge className="absolute top-4 left-4 bg-red-500 text-white text-lg px-3 py-1 font-roboto">
                   -{discount}% OFF
                 </Badge>
               )}
@@ -61,7 +61,7 @@ const ProductDetail = () => {
                   key={index}
                   src={image} 
                   alt={`${product.title} ${index + 2}`}
-                  className="w-full h-24 object-cover rounded-lg bg-white shadow-sm cursor-pointer hover:opacity-80"
+                  className="w-full h-24 object-cover rounded-lg bg-white shadow-sm cursor-pointer hover:opacity-80 border border-gray-200"
                 />
               ))}
             </div>
@@ -70,62 +70,62 @@ const ProductDetail = () => {
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
+              <h1 className="text-3xl font-bold mb-2 text-gray-900 font-roboto">{product.title}</h1>
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center">
                   <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                  <span className="ml-1 font-medium">{product.rating}</span>
-                  <span className="text-gray-500 ml-1">({product.reviews} reviews)</span>
+                  <span className="ml-1 font-medium text-gray-900 font-roboto">{product.rating}</span>
+                  <span className="text-gray-500 ml-1 font-roboto">({product.reviews} reviews)</span>
                 </div>
-                <Badge variant="outline">{product.condition}</Badge>
+                <Badge variant="outline" className="border-gray-300 text-gray-700 font-roboto">{product.condition}</Badge>
               </div>
             </div>
 
             <div className="space-y-2">
               <div className="flex items-center gap-3">
-                <span className="text-4xl font-bold text-green-600">
+                <span className="text-4xl font-bold text-green-600 font-roboto">
                   ${product.price.toLocaleString()}
                 </span>
-                <span className="text-xl text-gray-500 line-through">
+                <span className="text-xl text-gray-500 line-through font-roboto">
                   ${product.originalPrice.toLocaleString()}
                 </span>
               </div>
               <div className="flex items-center text-gray-600">
                 <Truck className="h-4 w-4 mr-2" />
-                <span>{product.shipping} shipping</span>
+                <span className="font-roboto">{product.shipping} shipping</span>
               </div>
             </div>
 
-            <Separator />
+            <Separator className="bg-gray-200" />
 
             <div className="space-y-4">
               <div className="flex gap-3">
-                <Button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg py-6">
+                <Button className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-lg py-6 font-roboto">
                   Buy It Now
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
                   <Heart className="h-5 w-5" />
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
                   <Share className="h-5 w-5" />
                 </Button>
               </div>
               
               {product.acceptsOffers && (
-                <Button variant="outline" className="w-full py-6 text-lg">
+                <Button variant="outline" className="w-full py-6 text-lg border-gray-300 text-gray-700 hover:bg-gray-50 font-roboto">
                   <MessageCircle className="h-5 w-5 mr-2" />
                   Make an Offer
                 </Button>
               )}
             </div>
 
-            <Card>
+            <Card className="border border-gray-200">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-3">
                   <Shield className="h-5 w-5 text-green-600" />
-                  <span className="font-medium">Buyer Protection</span>
+                  <span className="font-medium text-gray-900 font-roboto">Buyer Protection</span>
                 </div>
-                <ul className="text-sm text-gray-600 space-y-1">
+                <ul className="text-sm text-gray-600 space-y-1 font-roboto">
                   <li>• Money back guarantee</li>
                   <li>• Secure payment processing</li>
                   <li>• Fast and reliable shipping</li>
@@ -133,18 +133,18 @@ const ProductDetail = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="border border-gray-200">
               <CardContent className="p-4">
-                <h3 className="font-semibold mb-2">Seller Information</h3>
+                <h3 className="font-semibold mb-2 text-gray-900 font-roboto">Seller Information</h3>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{product.seller}</p>
+                    <p className="font-medium text-gray-900 font-roboto">{product.seller}</p>
                     <div className="flex items-center text-sm text-gray-600">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
-                      {product.rating} seller rating
+                      <span className="font-roboto">{product.rating} seller rating</span>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="border-gray-300 text-gray-700 hover:bg-gray-50 font-roboto">
                     View Profile
                   </Button>
                 </div>
@@ -155,23 +155,23 @@ const ProductDetail = () => {
 
         {/* Product Details */}
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card>
+          <Card className="border border-gray-200">
             <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4">Description</h3>
-              <p className="text-gray-700 leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900 font-roboto">Description</h3>
+              <p className="text-gray-700 leading-relaxed font-roboto">
                 {product.description}
               </p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border border-gray-200">
             <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4">Specifications</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-900 font-roboto">Specifications</h3>
               <div className="space-y-3">
                 {Object.entries(product.specifications).map(([key, value]) => (
                   <div key={key} className="flex justify-between">
-                    <span className="text-gray-600">{key}:</span>
-                    <span className="font-medium">{value}</span>
+                    <span className="text-gray-600 font-roboto">{key}:</span>
+                    <span className="font-medium text-gray-900 font-roboto">{value}</span>
                   </div>
                 ))}
               </div>
