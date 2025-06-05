@@ -13,7 +13,7 @@ const Index = () => {
       currentBid: "$18,500",
       timeLeft: "2h 45m",
       bidCount: 23,
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=300&fit=crop"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const Index = () => {
       currentBid: "$45,300",
       timeLeft: "1d 3h",
       bidCount: 15,
-      image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop"
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ const Index = () => {
       currentBid: "$3,200",
       timeLeft: "5h 12m",
       bidCount: 8,
-      image: "https://images.unsplash.com/photo-1609205807107-e5b46a5b7c47?w=400&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop"
     }
   ];
 

@@ -16,9 +16,9 @@ const ProductDetail = () => {
     price: 28500,
     originalPrice: 32000,
     images: [
-      "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1558618047-d78ddb8c1b2b?w=600&h=400&fit=crop"
+      "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1594736797933-d0cce8743985?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop"
     ],
     seller: "Fleet Solutions",
     rating: 4.8,
