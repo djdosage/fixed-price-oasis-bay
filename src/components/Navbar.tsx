@@ -18,15 +18,15 @@ export function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="border-b">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
+    <nav className="border-b bg-white sticky top-0 z-50">
+      <div className="container mx-auto px-4 h-16">
+        <div className="flex items-center justify-between h-full">
           {/* Logo and Navigation */}
           <div className="flex items-center gap-6">
-            <Link to="/" className="text-xl font-bold">
-              Equipment Market
+            <Link to="/" className="text-xl font-bold text-orange-600">
+              Ritchie Bros
             </Link>
-            <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-4">
               <Button variant="ghost" asChild>
                 <Link to="/marketplace">Marketplace</Link>
               </Button>
@@ -50,21 +50,29 @@ export function Navbar() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
-            <Button variant="ghost" asChild>
-              <Link to="/watchlist">Watchlist</Link>
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/watchlist">
+                <Heart className="h-4 w-4" />
+              </Link>
             </Button>
-            <Button>Sign In</Button>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <User className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={logout}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button onClick={() => setShowLoginDialog(true)}>Sign In</Button>
+            )}
           </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        <div className="md:hidden flex items-center gap-4 mt-3">
-          <Button variant="ghost" asChild className="flex-1">
-            <Link to="/marketplace">Marketplace</Link>
-          </Button>
-          <Button variant="ghost" asChild className="flex-1">
-            <Link to="/auctions">Auctions</Link>
-          </Button>
         </div>
       </div>
 

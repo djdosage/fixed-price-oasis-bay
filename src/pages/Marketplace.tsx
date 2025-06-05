@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 import { Filter, SortAsc } from 'lucide-react';
+import { ProductCard } from '@/components/ProductCard';
 
 // Mock data for marketplace items
 const MARKETPLACE_ITEMS = [
@@ -10,8 +10,7 @@ const MARKETPLACE_ITEMS = [
     title: 'Caterpillar 320 Excavator',
     price: 125000,
     description: 'Well-maintained excavator with low hours. Features include air conditioning and GPS.',
-    imageUrl: 'https://example.com/cat-320.jpg',
-    year: 2019,
+    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
     location: 'Dallas, TX',
     seller: 'Premium Equipment Co.',
   },
@@ -20,63 +19,52 @@ const MARKETPLACE_ITEMS = [
     title: 'John Deere 350G Excavator',
     price: 145000,
     description: 'Excellent condition with recent service. Includes multiple buckets.',
-    imageUrl: 'https://example.com/jd-350g.jpg',
-    year: 2020,
+    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
     location: 'Houston, TX',
     seller: 'Texas Heavy Machinery',
   },
 ];
 
 export default function MarketplacePage() {
-  const navigate = useNavigate();
-
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex justify-end gap-4 mb-6">
-        <Button variant="outline" size="sm">
-          <Filter className="h-4 w-4 mr-2" />
-          Filter
-        </Button>
-        <Button variant="outline" size="sm">
-          <SortAsc className="h-4 w-4 mr-2" />
-          Sort
-        </Button>
-      </div>
+    <div>
+      {/* Hero Section */}
+      <section className="relative h-64 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1541976590-713941681591?w=1200&h=400&fit=crop"
+          alt="Construction site"
+          className="w-full h-full object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-4xl font-bold text-white text-center">
+            Premium Equipment, Ready to Work
+          </h1>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {MARKETPLACE_ITEMS.map((item) => (
-          <Card key={item.id} className="flex flex-col">
-            <CardHeader>
-              <CardTitle className="text-lg">{item.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <img
-                src={item.imageUrl}
-                alt={item.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <p className="text-xl font-bold">${item.price.toLocaleString()}</p>
-              <p className="text-gray-600 line-clamp-2">{item.description}</p>
-              <div className="mt-4 space-y-1">
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium">Location:</span> {item.location}
-                </p>
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium">Seller:</span> {item.seller}
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button 
-                variant="default" 
-                className="w-full"
-                onClick={() => navigate(`/product/${item.id}`)}
-              >
-                View Details
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+      {/* Main Content */}
+      <div className="container mx-auto p-6">
+        <div className="flex justify-end gap-4 mb-6">
+          <Button variant="outline" size="sm">
+            <Filter className="h-4 w-4 mr-2" />
+            Filter
+          </Button>
+          <Button variant="outline" size="sm">
+            <SortAsc className="h-4 w-4 mr-2" />
+            Sort
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {MARKETPLACE_ITEMS.map((item) => (
+            <ProductCard
+              key={item.id}
+              {...item}
+              type="marketplace"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,31 +1,20 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-interface User {
-  id: string;
-  email: string;
-  name: string;
-}
-
 interface AuthContextType {
-  user: User | null;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
+  user: any | null;
   isAuthenticated: boolean;
+  login: (credentials: { email: string; password: string }) => Promise<void>;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any | null>(null);
 
-  const login = async (email: string, password: string) => {
-    // In a real app, you would validate credentials with your backend
-    // For now, we'll simulate a successful login
-    setUser({
-      id: '1',
-      email,
-      name: email.split('@')[0],
-    });
+  const login = async (credentials: { email: string; password: string }) => {
+    // TODO: Implement actual login logic
+    setUser({ email: credentials.email });
   };
 
   const logout = () => {
@@ -33,7 +22,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        login,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

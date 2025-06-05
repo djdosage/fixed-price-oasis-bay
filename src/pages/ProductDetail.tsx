@@ -1,189 +1,203 @@
-import { useParams } from "react-router-dom";
-import Header from "@/components/Header";
+import { useParams, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Heart, Star, Truck, Shield, MessageCircle, Share } from "lucide-react";
+import { Heart, MessageCircle, Share } from "lucide-react";
+import { useWatchlist } from '@/contexts/WatchlistContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { LoginDialog } from '@/components/LoginDialog';
+import { useState } from "react";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const isAuction = location.pathname.includes('/auctions/');
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const { isInWatchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
 
   // Mock product data - in real app this would come from API
   const product = {
-    id: Number(id),
-    title: "2019 Ford F-150 XLT Pickup Truck",
-    price: 28500,
-    originalPrice: 32000,
-    images: [
-      "https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1594736797933-d0cce8743985?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop"
+    id: id || '',
+    title: "2019 Caterpillar 320 Excavator",
+    price: 125000,
+    currentBid: 125000,
+    nextMinimumBid: 126000,
+    description: "Well-maintained Caterpillar 320 Excavator with low hours. Features include air conditioning, backup camera, and GPS system. Recently serviced with new tracks and hydraulic system inspection.",
+    imageUrl: "https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=800",
+    location: "Dallas, TX",
+    seller: "Heavy Equipment Solutions",
+    auctionEvent: isAuction ? "June Heavy Equipment Auction" : undefined,
+    endsAt: isAuction ? "2024-06-15T18:00:00Z" : undefined,
+    bids: isAuction ? 12 : undefined,
+    specifications: [
+      { label: 'Make', value: 'Caterpillar' },
+      { label: 'Model', value: '320' },
+      { label: 'Year', value: '2019' },
+      { label: 'Hours', value: '3,500' },
+      { label: 'Serial Number', value: 'CAT0320X123456789' },
     ],
-    seller: "Fleet Solutions",
-    rating: 4.8,
-    reviews: 45,
-    condition: "Good",
-    shipping: "Pickup Only",
-    acceptsOffers: true,
-    description: "Well-maintained fleet vehicle with regular service history. This F-150 XLT features 4WD capability, crew cab configuration, and has been primarily used for light commercial duties. Recent maintenance includes new tires and brake service.",
-    specifications: {
-      "Year": "2019",
-      "Make": "Ford",
-      "Model": "F-150 XLT",
-      "Mileage": "78,500 miles",
-      "Engine": "3.5L V6 EcoBoost",
-      "Transmission": "10-Speed Automatic",
-      "Drive Type": "4WD"
+  };
+
+  const handleWatchlistClick = () => {
+    if (!isAuthenticated) {
+      setShowLoginDialog(true);
+      return;
+    }
+
+    if (isInWatchlist(product.id)) {
+      removeFromWatchlist(product.id);
+    } else {
+      addToWatchlist({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        description: product.description,
+        imageUrl: product.imageUrl,
+      });
     }
   };
 
-  const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  const getTimeRemaining = (endsAt: string) => {
+    const end = new Date(endsAt);
+    const now = new Date();
+    const diff = end.getTime() - now.getTime();
+
+    if (diff <= 0) return 'Ended';
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    if (days > 0) return `${days}d ${hours}h`;
+    if (hours > 0) return `${hours}h ${minutes}m`;
+    return `${minutes}m`;
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Product Images */}
-          <div className="space-y-4">
-            <div className="relative">
-              <img 
-                src={product.images[0]} 
-                alt={product.title}
-                className="w-full h-96 object-cover rounded-lg bg-white shadow-sm border border-gray-200"
-              />
-              {discount > 0 && (
-                <Badge className="absolute top-4 left-4 bg-red-500 text-white text-lg px-3 py-1 font-roboto">
-                  -{discount}% OFF
+    <div className="container mx-auto p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Image Section */}
+        <div>
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="w-full h-[400px] object-cover rounded-lg"
+          />
+        </div>
+
+        {/* Details Section */}
+        <div className="space-y-6">
+          <div className="flex justify-between items-start">
+            <div>
+              <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
+              {isAuction && product.auctionEvent && (
+                <Badge variant="secondary" className="text-sm">
+                  {product.auctionEvent}
                 </Badge>
               )}
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              {product.images.slice(1).map((image, index) => (
-                <img 
-                  key={index}
-                  src={image} 
-                  alt={`${product.title} ${index + 2}`}
-                  className="w-full h-24 object-cover rounded-lg bg-white shadow-sm cursor-pointer hover:opacity-80 border border-gray-200"
-                />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={handleWatchlistClick}
+              className={isInWatchlist(product.id) ? 'text-red-500' : 'text-gray-500'}
+            >
+              <Heart className={`h-6 w-6 ${isInWatchlist(product.id) ? 'fill-current' : ''}`} />
+            </Button>
+          </div>
+
+          <div>
+            {isAuction ? (
+              <>
+                <p className="text-sm text-gray-600">Current Bid</p>
+                <p className="text-3xl font-bold text-green-600">
+                  ${product.currentBid?.toLocaleString()}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Next minimum bid: ${product.nextMinimumBid?.toLocaleString()}
+                </p>
+                {product.endsAt && (
+                  <p className="text-sm text-red-600 mt-2">
+                    Time remaining: {getTimeRemaining(product.endsAt)}
+                  </p>
+                )}
+              </>
+            ) : (
+              <p className="text-3xl font-bold">${product.price.toLocaleString()}</p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-gray-600">Location</p>
+              <p className="font-semibold">{product.location}</p>
+            </div>
+            <div>
+              <p className="text-gray-600">Seller</p>
+              <p className="font-semibold">{product.seller}</p>
+            </div>
+            {isAuction && product.bids && (
+              <div>
+                <p className="text-gray-600">Total Bids</p>
+                <p className="font-semibold">{product.bids}</p>
+              </div>
+            )}
+          </div>
+
+          <div className="flex gap-2">
+            {isAuction ? (
+              <Button className="flex-1" size="lg">
+                Place Bid
+              </Button>
+            ) : (
+              <>
+                <Button className="flex-1" size="lg">
+                  Buy Now
+                </Button>
+                <Button variant="outline" className="flex-1" size="lg">
+                  Make Offer
+                </Button>
+              </>
+            )}
+          </div>
+
+          <Separator />
+
+          <div>
+            <h2 className="text-xl font-bold mb-2">Description</h2>
+            <p className="text-gray-700">{product.description}</p>
+          </div>
+
+          <Separator />
+
+          <div>
+            <h2 className="text-xl font-bold mb-4">Specifications</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {product.specifications.map((spec) => (
+                <div key={spec.label}>
+                  <p className="text-gray-600">{spec.label}</p>
+                  <p className="font-semibold">{spec.value}</p>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Product Info */}
-          <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold mb-2 text-gray-900 font-roboto">{product.title}</h1>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center">
-                  <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                  <span className="ml-1 font-medium text-gray-900 font-roboto">{product.rating}</span>
-                  <span className="text-gray-500 ml-1 font-roboto">({product.reviews} reviews)</span>
-                </div>
-                <Badge variant="outline" className="border-gray-300 text-gray-700 font-roboto">{product.condition}</Badge>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl font-bold text-green-600 font-roboto">
-                  ${product.price.toLocaleString()}
-                </span>
-                <span className="text-xl text-gray-500 line-through font-roboto">
-                  ${product.originalPrice.toLocaleString()}
-                </span>
-              </div>
-              <div className="flex items-center text-gray-600">
-                <Truck className="h-4 w-4 mr-2" />
-                <span className="font-roboto">{product.shipping}</span>
-              </div>
-            </div>
-
-            <Separator className="bg-gray-200" />
-
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <Button className="flex-1 bg-orange-500 hover:bg-orange-600 text-white text-lg py-6 font-roboto">
-                  Buy It Now
-                </Button>
-                <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
-                  <Heart className="h-5 w-5" />
-                </Button>
-                <Button variant="outline" size="lg" className="border-gray-300 text-gray-700 hover:bg-gray-50">
-                  <Share className="h-5 w-5" />
-                </Button>
-              </div>
-              
-              {product.acceptsOffers && (
-                <Button variant="outline" className="w-full py-6 text-lg border-gray-300 text-gray-700 hover:bg-gray-50 font-roboto">
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  Make an Offer
-                </Button>
-              )}
-            </div>
-
-            <Card className="border border-gray-200">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <Shield className="h-5 w-5 text-green-600" />
-                  <span className="font-medium text-gray-900 font-roboto">Buyer Protection</span>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1 font-roboto">
-                  <li>• Inspection period available</li>
-                  <li>• Secure payment processing</li>
-                  <li>• Title and documentation support</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-gray-200">
-              <CardContent className="p-4">
-                <h3 className="font-semibold mb-2 text-gray-900 font-roboto">Seller Information</h3>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-900 font-roboto">{product.seller}</p>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400 mr-1" />
-                      <span className="font-roboto">{product.rating} seller rating</span>
-                    </div>
-                  </div>
-                  <Button variant="outline" size="sm" className="border-gray-300 text-gray-700 hover:bg-gray-50 font-roboto">
-                    View Profile
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="flex gap-2">
+            <Button variant="outline" className="flex-1">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Contact Seller
+            </Button>
+            <Button variant="outline" className="flex-1">
+              <Share className="w-4 h-4 mr-2" />
+              Share
+            </Button>
           </div>
         </div>
-
-        {/* Product Details */}
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="border border-gray-200">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 font-roboto">Description</h3>
-              <p className="text-gray-700 leading-relaxed font-roboto">
-                {product.description}
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-gray-200">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 font-roboto">Vehicle Details</h3>
-              <div className="space-y-3">
-                {Object.entries(product.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between">
-                    <span className="text-gray-600 font-roboto">{key}:</span>
-                    <span className="font-medium text-gray-900 font-roboto">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
+
+      <LoginDialog isOpen={showLoginDialog} onClose={() => setShowLoginDialog(false)} />
     </div>
   );
 };

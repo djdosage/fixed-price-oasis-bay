@@ -6,19 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import { Heart, Grid, List, SlidersHorizontal, Timer, Filter, SortAsc } from 'lucide-react';
 import { useState } from 'react';
 import { LoginDialog } from '@/components/LoginDialog';
+import { ProductCard } from '@/components/ProductCard';
 
 interface AuctionItem {
   id: string;
   title: string;
+  price: number;
   currentBid: number;
   nextMinimumBid: number;
   description: string;
   imageUrl: string;
-  year: number;
   location: string;
   seller: string;
   endsAt: string;
   bids: number;
+  auctionEvent: string;
 }
 
 // Mock data for auction listings
@@ -26,41 +28,44 @@ const AUCTION_ITEMS: AuctionItem[] = [
   {
     id: '1',
     title: 'Caterpillar D6 Dozer',
+    price: 85000,
     currentBid: 85000,
     nextMinimumBid: 86000,
     description: 'Low-hour Cat D6 Dozer with ripper. Well maintained and ready to work.',
-    imageUrl: 'https://example.com/cat-d6.jpg',
-    year: 2018,
+    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
     location: 'Montgomery, AL',
     seller: 'Southern Auction Company',
     endsAt: '2024-06-10T14:00:00Z',
     bids: 12,
+    auctionEvent: 'June Heavy Equipment Auction',
   },
   {
     id: '2',
     title: 'Volvo EC300E Excavator',
+    price: 110000,
     currentBid: 110000,
     nextMinimumBid: 112000,
     description: 'Excellent condition Volvo excavator with low hours and full maintenance history.',
-    imageUrl: 'https://example.com/volvo-ec300e.jpg',
-    year: 2020,
+    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
     location: 'Atlanta, GA',
     seller: 'East Coast Auctions',
     endsAt: '2024-06-11T18:00:00Z',
     bids: 8,
+    auctionEvent: 'June Heavy Equipment Auction',
   },
   {
     id: '3',
     title: 'Komatsu WA380 Wheel Loader',
+    price: 95000,
     currentBid: 95000,
     nextMinimumBid: 96000,
     description: 'Well-maintained wheel loader with new tires and recent service.',
-    imageUrl: 'https://example.com/komatsu-wa380.jpg',
-    year: 2019,
+    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
     location: 'Jacksonville, FL',
     seller: 'Florida Equipment Auctions',
     endsAt: '2024-06-12T20:00:00Z',
     bids: 15,
+    auctionEvent: 'June Heavy Equipment Auction',
   },
 ];
 
@@ -127,69 +132,11 @@ export default function AuctionsPage() {
             : 'grid-cols-1'
         }`}>
           {AUCTION_ITEMS.map((item) => (
-            <Card key={item.id} className={`flex flex-col ${viewMode === 'list' ? 'flex-row' : ''}`}>
-              <div className={viewMode === 'list' ? 'w-1/3' : ''}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className={`w-full object-cover rounded-md mb-4 ${
-                      viewMode === 'list' ? 'h-32' : 'h-48'
-                    }`}
-                  />
-                </CardContent>
-              </div>
-              <div className={viewMode === 'list' ? 'w-2/3 p-4' : ''}>
-                <CardContent className="flex-grow">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <p className="text-xl font-bold">${item.currentBid.toLocaleString()}</p>
-                      <p className="text-sm text-gray-600">Next bid: ${item.nextMinimumBid.toLocaleString()}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-medium flex items-center gap-1">
-                        <Timer className="h-4 w-4" />
-                        {getTimeRemaining(item.endsAt)}
-                      </p>
-                      <p className="text-sm text-gray-600">{item.bids} bids</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 line-clamp-2">{item.description}</p>
-                  <div className="mt-4 space-y-1">
-                    <p className="text-sm text-gray-600">
-                      <span className="font-medium">Location:</span> {item.location}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      <span className="font-medium">Seller:</span> {item.seller}
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      <span className="font-medium">Year:</span> {item.year}
-                    </p>
-                  </div>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button variant="outline" onClick={() => navigate(`/product/${item.id}`)}>
-                    View Details
-                  </Button>
-                  <div className="flex gap-2">
-                    <Button variant="default">
-                      Place Bid
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleWatchlistClick(item)}
-                      className={isInWatchlist(item.id) ? 'text-red-500' : 'text-gray-500'}
-                    >
-                      <Heart className={`h-5 w-5 ${isInWatchlist(item.id) ? 'fill-current' : ''}`} />
-                    </Button>
-                  </div>
-                </CardFooter>
-              </div>
-            </Card>
+            <ProductCard
+              key={item.id}
+              {...item}
+              type="auction"
+            />
           ))}
         </div>
       </div>

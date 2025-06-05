@@ -1,65 +1,48 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface WatchlistItem {
   id: string;
   title: string;
   price: number;
-  imageUrl: string;
   description: string;
+  imageUrl: string;
 }
 
 interface WatchlistContextType {
   watchlist: WatchlistItem[];
+  isInWatchlist: (id: string) => boolean;
   addToWatchlist: (item: WatchlistItem) => void;
-  removeFromWatchlist: (itemId: string) => void;
-  isInWatchlist: (itemId: string) => boolean;
+  removeFromWatchlist: (id: string) => void;
 }
 
 const WatchlistContext = createContext<WatchlistContextType | undefined>(undefined);
 
 export function WatchlistProvider({ children }: { children: ReactNode }) {
-  const [watchlist, setWatchlist] = useState<WatchlistItem[]>([]);
-  const { user } = useAuth();
+  const [watchlist, setWatchlist] = useState<WatchlistItem[]>(() => {
+    const saved = localStorage.getItem('watchlist');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Load watchlist from localStorage when user logs in
   useEffect(() => {
-    if (user) {
-      const savedWatchlist = localStorage.getItem(`watchlist-${user.id}`);
-      if (savedWatchlist) {
-        setWatchlist(JSON.parse(savedWatchlist));
-      }
-    } else {
-      setWatchlist([]); // Clear watchlist when user logs out
-    }
-  }, [user]);
+    localStorage.setItem('watchlist', JSON.stringify(watchlist));
+  }, [watchlist]);
 
-  // Save watchlist to localStorage whenever it changes
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem(`watchlist-${user.id}`, JSON.stringify(watchlist));
-    }
-  }, [watchlist, user]);
+  const isInWatchlist = (id: string) => {
+    return watchlist.some(item => item.id === id);
+  };
 
   const addToWatchlist = (item: WatchlistItem) => {
-    if (!user) return; // Only allow adding items when logged in
-    setWatchlist(prev => {
-      if (prev.some(i => i.id === item.id)) return prev;
-      return [...prev, item];
-    });
+    if (!isInWatchlist(item.id)) {
+      setWatchlist(prev => [...prev, item]);
+    }
   };
 
-  const removeFromWatchlist = (itemId: string) => {
-    if (!user) return;
-    setWatchlist(prev => prev.filter(item => item.id !== itemId));
-  };
-
-  const isInWatchlist = (itemId: string) => {
-    return watchlist.some(item => item.id === itemId);
+  const removeFromWatchlist = (id: string) => {
+    setWatchlist(prev => prev.filter(item => item.id !== id));
   };
 
   return (
-    <WatchlistContext.Provider value={{ watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist }}>
+    <WatchlistContext.Provider value={{ watchlist, isInWatchlist, addToWatchlist, removeFromWatchlist }}>
       {children}
     </WatchlistContext.Provider>
   );
