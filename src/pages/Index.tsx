@@ -10,27 +10,27 @@ const Index = () => {
   const featuredAuctions = [
     {
       id: 1,
-      title: "Vintage Rolex Submariner",
-      currentBid: "$8,500",
+      title: "2020 Ford Transit Van Fleet",
+      currentBid: "$18,500",
       timeLeft: "2h 45m",
       bidCount: 23,
-      image: "/placeholder.svg"
+      image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=300&fit=crop"
     },
     {
       id: 2,
-      title: "Classic Ferrari Model",
-      currentBid: "$2,300",
+      title: "Construction Equipment Lot",
+      currentBid: "$45,300",
       timeLeft: "1d 3h",
       bidCount: 15,
-      image: "/placeholder.svg"
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop"
     },
     {
       id: 3,
-      title: "Antique Painting",
-      currentBid: "$1,200",
+      title: "Professional Tool Collection",
+      currentBid: "$3,200",
       timeLeft: "5h 12m",
       bidCount: 8,
-      image: "/placeholder.svg"
+      image: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400&h=300&fit=crop"
     }
   ];
 
@@ -42,10 +42,10 @@ const Index = () => {
       <section className="bg-white py-16 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 font-roboto">
-            Premium Auction Platform
+            Commercial Asset Auctions
           </h1>
           <p className="text-xl mb-8 text-gray-600 font-roboto">
-            Discover rare and valuable items from around the world
+            Vehicles, equipment, and machinery from trusted sellers worldwide
           </p>
           <div className="flex justify-center space-x-4">
             <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-roboto font-medium">

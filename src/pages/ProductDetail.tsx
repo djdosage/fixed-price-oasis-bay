@@ -13,23 +13,29 @@ const ProductDetail = () => {
   // Mock product data - in real app this would come from API
   const product = {
     id: Number(id),
-    title: "MacBook Pro 16-inch M3",
-    price: 2499,
-    originalPrice: 2799,
-    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
-    seller: "TechStore Pro",
+    title: "2019 Ford F-150 XLT Pickup Truck",
+    price: 28500,
+    originalPrice: 32000,
+    images: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&h=400&fit=crop"
+    ],
+    seller: "Fleet Solutions",
     rating: 4.8,
-    reviews: 124,
-    condition: "New",
-    shipping: "Free",
+    reviews: 45,
+    condition: "Good",
+    shipping: "Pickup Only",
     acceptsOffers: true,
-    description: "Latest MacBook Pro with M3 chip, featuring incredible performance and battery life. Perfect for professionals and creators.",
+    description: "Well-maintained fleet vehicle with regular service history. This F-150 XLT features 4WD capability, crew cab configuration, and has been primarily used for light commercial duties. Recent maintenance includes new tires and brake service.",
     specifications: {
-      "Processor": "Apple M3 Chip",
-      "Memory": "16GB Unified Memory",
-      "Storage": "512GB SSD",
-      "Display": "16.2-inch Liquid Retina XDR",
-      "Graphics": "M3 GPU"
+      "Year": "2019",
+      "Make": "Ford",
+      "Model": "F-150 XLT",
+      "Mileage": "78,500 miles",
+      "Engine": "3.5L V6 EcoBoost",
+      "Transmission": "10-Speed Automatic",
+      "Drive Type": "4WD"
     }
   };
 
@@ -92,7 +98,7 @@ const ProductDetail = () => {
               </div>
               <div className="flex items-center text-gray-600">
                 <Truck className="h-4 w-4 mr-2" />
-                <span className="font-roboto">{product.shipping} shipping</span>
+                <span className="font-roboto">{product.shipping}</span>
               </div>
             </div>
 
@@ -126,9 +132,9 @@ const ProductDetail = () => {
                   <span className="font-medium text-gray-900 font-roboto">Buyer Protection</span>
                 </div>
                 <ul className="text-sm text-gray-600 space-y-1 font-roboto">
-                  <li>• Money back guarantee</li>
+                  <li>• Inspection period available</li>
                   <li>• Secure payment processing</li>
-                  <li>• Fast and reliable shipping</li>
+                  <li>• Title and documentation support</li>
                 </ul>
               </CardContent>
             </Card>
@@ -166,7 +172,7 @@ const ProductDetail = () => {
 
           <Card className="border border-gray-200">
             <CardContent className="p-6">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 font-roboto">Specifications</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-900 font-roboto">Vehicle Details</h3>
               <div className="space-y-3">
                 {Object.entries(product.specifications).map(([key, value]) => (
                   <div key={key} className="flex justify-between">

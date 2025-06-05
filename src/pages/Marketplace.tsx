@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import MarketplaceFilters from "@/components/MarketplaceFilters";
 import ProductCard from "@/components/ProductCard";
@@ -13,77 +12,77 @@ const Marketplace = () => {
   const products = [
     {
       id: 1,
-      title: "MacBook Pro 16-inch M3",
-      price: 2499,
-      originalPrice: 2799,
-      image: "/placeholder.svg",
-      seller: "TechStore Pro",
+      title: "2019 Ford F-150 XLT Pickup Truck",
+      price: 28500,
+      originalPrice: 32000,
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+      seller: "Fleet Solutions",
       rating: 4.8,
-      reviews: 124,
-      condition: "New",
-      shipping: "Free",
+      reviews: 45,
+      condition: "Good",
+      shipping: "Pickup Only",
       acceptsOffers: true
     },
     {
       id: 2,
-      title: "Vintage Leather Jacket",
-      price: 320,
-      image: "/placeholder.svg",
-      seller: "VintageFinds",
+      title: "Caterpillar 320D Excavator",
+      price: 95000,
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop",
+      seller: "Heavy Equipment Co",
       rating: 4.9,
-      reviews: 89,
+      reviews: 23,
       condition: "Excellent",
-      shipping: "$15",
+      shipping: "Freight",
       acceptsOffers: true
     },
     {
       id: 3,
-      title: "Professional Camera Lens",
-      price: 1200,
-      originalPrice: 1400,
-      image: "/placeholder.svg",
-      seller: "PhotoPro",
+      title: "John Deere 6120M Tractor",
+      price: 78000,
+      originalPrice: 85000,
+      image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop",
+      seller: "Farm Equipment Plus",
       rating: 4.7,
-      reviews: 56,
-      condition: "Like New",
-      shipping: "Free",
+      reviews: 18,
+      condition: "Very Good",
+      shipping: "Freight",
       acceptsOffers: false
     },
     {
       id: 4,
-      title: "Designer Watch Collection",
-      price: 850,
-      image: "/placeholder.svg",
-      seller: "LuxuryTime",
+      title: "Professional Tool Set - Complete Workshop",
+      price: 2400,
+      image: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400&h=300&fit=crop",
+      seller: "Industrial Tools Direct",
       rating: 4.9,
-      reviews: 203,
+      reviews: 67,
       condition: "New",
-      shipping: "Free",
+      shipping: "$45",
       acceptsOffers: true
     },
     {
       id: 5,
-      title: "Artisan Coffee Set",
-      price: 95,
-      originalPrice: 120,
-      image: "/placeholder.svg",
-      seller: "CraftCoffee",
+      title: "2018 Chevrolet Silverado 2500HD",
+      price: 34500,
+      originalPrice: 38000,
+      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&h=300&fit=crop",
+      seller: "Commercial Vehicles Ltd",
       rating: 4.6,
-      reviews: 78,
-      condition: "New",
-      shipping: "$8",
+      reviews: 34,
+      condition: "Good",
+      shipping: "Pickup Only",
       acceptsOffers: true
     },
     {
       id: 6,
-      title: "Gaming Desktop PC",
-      price: 1899,
-      image: "/placeholder.svg",
-      seller: "GameRig Pro",
+      title: "Bobcat S650 Skid Steer Loader",
+      price: 42000,
+      image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=300&fit=crop",
+      seller: "Construction Equipment Pro",
       rating: 4.8,
-      reviews: 167,
-      condition: "New",
-      shipping: "Free",
+      reviews: 29,
+      condition: "Very Good",
+      shipping: "Freight",
       acceptsOffers: false
     }
   ];
@@ -100,7 +99,7 @@ const Marketplace = () => {
               Fixed-Price Marketplace
             </h1>
             <p className="text-xl text-gray-600 mb-6 font-roboto">
-              Buy instantly or make an offer on premium items with transparent pricing
+              Buy vehicles, equipment, and machinery instantly or make an offer
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="bg-orange-50 border border-orange-200 rounded-lg px-4 py-2">
@@ -110,7 +109,7 @@ const Marketplace = () => {
                 <span className="text-sm font-medium text-orange-700 font-roboto">✓ Make Offer Options</span>
               </div>
               <div className="bg-orange-50 border border-orange-200 rounded-lg px-4 py-2">
-                <span className="text-sm font-medium text-orange-700 font-roboto">✓ Instant Purchase</span>
+                <span className="text-sm font-medium text-orange-700 font-roboto">✓ Inspection Available</span>
               </div>
             </div>
           </div>
