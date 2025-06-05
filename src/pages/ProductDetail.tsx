@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
@@ -17,9 +16,9 @@ const ProductDetail = () => {
     price: 28500,
     originalPrice: 32000,
     images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
       "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop",
-      "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&h=400&fit=crop"
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1558618047-d78ddb8c1b2b?w=600&h=400&fit=crop"
     ],
     seller: "Fleet Solutions",
     rating: 4.8,
