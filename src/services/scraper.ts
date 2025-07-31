@@ -2,12 +2,19 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 export interface AuctionItem {
+  id?: string;
   title: string;
   url: string;
   price: number;
   description: string;
   timestamp: number;
   source: string;
+  image?: string;
+  seller?: string;
+  condition?: string;
+  location?: string;
+  lotNumber?: string;
+  auctionDate?: string;
 }
 
 export interface AuctionEvent {

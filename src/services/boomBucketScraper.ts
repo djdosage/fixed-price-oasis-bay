@@ -42,6 +42,7 @@ class BoomBucketScraper {
           const location = $el.find('.equipment-location').text().trim();
           const condition = $el.find('.equipment-condition').text().trim() || 'Used';
           const description = $el.find('.equipment-description').text().trim();
+          const link = $el.find('a').attr('href') || '';
           
           // Generate a unique ID
           const id = `bb-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -49,6 +50,7 @@ class BoomBucketScraper {
           items.push({
             id,
             title,
+            url: `https://www.boomandbucket.com${link}`,
             price,
             image,
             seller: 'Boom & Bucket',
@@ -56,6 +58,8 @@ class BoomBucketScraper {
             location,
             lotNumber: '',
             description,
+            timestamp: Date.now(),
+            source: 'Boom & Bucket',
             auctionDate: new Date().toLocaleDateString() // Current date since these are direct sales
           });
         });
