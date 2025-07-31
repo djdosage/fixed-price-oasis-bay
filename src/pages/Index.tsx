@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ProductCard } from "@/components/ProductCard";
+import { EventCard } from "@/components/EventCard";
 import { FeaturedEquipment } from "@/components/FeaturedEquipment";
 
 const Index = () => {
@@ -49,6 +50,50 @@ const Index = () => {
     },
   ];
 
+  const upcomingEvents = [
+    {
+      id: 'event-1',
+      eventName: 'Dallas Heavy Equipment Auction',
+      country: 'United States',
+      eventPhoto: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+      startDate: '2024-08-15T09:00:00Z',
+      endDate: '2024-08-17T17:00:00Z',
+      closingDate: '2024-08-17T15:30:00Z',
+      isOpenForBidding: true,
+      isRegistered: true,
+      itemCount: 245,
+    },
+    {
+      id: 'event-2',
+      eventName: 'Toronto Industrial Equipment Sale',
+      country: 'Canada',
+      eventPhoto: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop',
+      startDate: '2024-08-20T08:00:00Z',
+      endDate: '2024-08-22T16:00:00Z',
+      closingDate: '2024-08-22T14:00:00Z',
+      isOpenForBidding: true,
+      isRegistered: false,
+      itemCount: 180,
+    },
+    {
+      id: 'event-3',
+      eventName: 'Melbourne Mining Equipment Auction',
+      country: 'Australia',
+      eventPhoto: 'https://images.unsplash.com/photo-1580947265985-e4b7ad3c4f1f?w=400&h=300&fit=crop',
+      startDate: '2024-08-25T10:00:00Z',
+      endDate: '2024-08-27T18:00:00Z',
+      closingDate: '2024-08-27T16:45:00Z',
+      isOpenForBidding: false,
+      isRegistered: true,
+      itemCount: 320,
+    },
+  ];
+
+  const handleViewItems = (eventId: string) => {
+    console.log('View items for event:', eventId);
+    // Navigate to event items page
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -69,6 +114,22 @@ const Index = () => {
                 Browse Marketplace
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Events */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Upcoming Auction Events</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {upcomingEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                {...event}
+                onViewItems={handleViewItems}
+              />
+            ))}
           </div>
         </div>
       </section>
