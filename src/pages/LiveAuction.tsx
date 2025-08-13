@@ -24,17 +24,17 @@ interface LiveAuctionItem {
   highBidder?: string;
 }
 
-const LIVE_AUCTION_ITEMS: LiveAuctionItem[] = [
+const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
   {
     id: '1',
     lotNumber: 4,
-    title: '2010 Volkswagen Jetta Automobile',
-    currentBid: 2000,
-    nextMinimumBid: 2100,
-    imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
-    location: 'Chilliwack, BC, CAN',
-    usage: '194,529 km',
-    description: '5 cyl 2.5 L Gasoline Engine • Automatic Transmission • Air Conditioner • Power Windows • Power Locks',
+    title: '2019 Caterpillar 320 Excavator',
+    currentBid: 85000,
+    nextMinimumBid: 86000,
+    imageUrl: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+    location: 'Montgomery, AL, USA',
+    usage: '3,250 hours',
+    description: 'Well-maintained Cat 320 excavator with hydraulic thumb, A/C, backup camera, and GPS system. Recent service completed.',
     closingTime: '2024-08-15T14:25:00Z',
     bidCount: 12,
     status: 'closing-soon',
@@ -42,27 +42,27 @@ const LIVE_AUCTION_ITEMS: LiveAuctionItem[] = [
   {
     id: '2',
     lotNumber: 5,
-    title: '2009 Pontiac Vibe Automobile',
-    currentBid: 1300,
-    nextMinimumBid: 1400,
-    imageUrl: 'https://images.unsplash.com/photo-1549399524-70d2d4fa4bc4?w=400&h=300&fit=crop',
-    location: 'Chilliwack, BC, CAN',
-    usage: '363,739 km',
-    description: '4 cyl 2.4 L Gasoline Engine • Automatic Transmission • Air Conditioner • Power Windows • Power Locks',
+    title: '2020 Volvo L60H Wheel Loader',
+    currentBid: 125000,
+    nextMinimumBid: 127000,
+    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    location: 'Denver, CO, USA',
+    usage: '2,180 hours',
+    description: 'Volvo L60H wheel loader with quick coupler, ride control, and premium cab package. Excellent condition.',
     closingTime: '2024-08-15T14:30:00Z',
-    bidCount: 8,
+    bidCount: 18,
     status: 'live',
   },
   {
     id: '3',
     lotNumber: 9,
-    title: '2004 Honda Accord Automobile',
-    currentBid: 2200,
+    title: '2018 John Deere 350G Dozer',
+    currentBid: 95000,
     nextMinimumBid: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?w=400&h=300&fit=crop',
-    location: 'Chilliwack, BC, CAN',
-    usage: '237,264 km',
-    description: 'V6 3.0 L Gasoline Engine • 2004 US EPA Label • Automatic Transmission • Air Conditioner • Power Windows',
+    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    location: 'Atlanta, GA, USA',
+    usage: '4,100 hours',
+    description: 'John Deere 350G dozer with 6-way blade, ripper, and undercarriage in good condition. Ready to work.',
     closingTime: '2024-08-15T14:20:00Z',
     bidCount: 0,
     status: 'sold',
@@ -70,23 +70,135 @@ const LIVE_AUCTION_ITEMS: LiveAuctionItem[] = [
   {
     id: '4',
     lotNumber: 10,
-    title: '1934 Ford Tudor Classic Car',
-    currentBid: 8500,
-    nextMinimumBid: 9000,
-    imageUrl: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop',
-    location: 'Chilliwack, BC, CAN',
-    usage: 'Classic Vehicle',
-    description: 'Vintage 1934 Ford Tudor • Restored Condition • Original Features',
+    title: '2021 Komatsu PC210LC Excavator',
+    currentBid: 135000,
+    nextMinimumBid: 137000,
+    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    location: 'Houston, TX, USA',
+    usage: '1,850 hours',
+    description: 'Low-hour Komatsu excavator with hydraulic thumb, premium cab, and full maintenance records.',
     closingTime: '2024-08-15T14:35:00Z',
     bidCount: 23,
     status: 'live',
   },
+  {
+    id: '5',
+    lotNumber: 12,
+    title: '2017 Bobcat S770 Skid Steer',
+    currentBid: 42000,
+    nextMinimumBid: 43000,
+    imageUrl: 'https://images.unsplash.com/photo-1609824200163-8fa3b82b83de?w=400&h=300&fit=crop',
+    location: 'Phoenix, AZ, USA',
+    usage: '2,950 hours',
+    description: 'Bobcat S770 skid steer with high-flow hydraulics, enclosed cab, and multiple attachment compatibility.',
+    closingTime: '2024-08-15T14:40:00Z',
+    bidCount: 15,
+    status: 'live',
+  },
+  {
+    id: '6',
+    lotNumber: 15,
+    title: '2019 Case 586H Forklift',
+    currentBid: 35000,
+    nextMinimumBid: 36000,
+    imageUrl: 'https://images.unsplash.com/photo-1563330232-57114bb0823c?w=400&h=300&fit=crop',
+    location: 'Jacksonville, FL, USA',
+    usage: '3,200 hours',
+    description: 'Case rough terrain forklift with 4WD, side shift, and fork positioner. Well maintained.',
+    closingTime: '2024-08-15T14:45:00Z',
+    bidCount: 8,
+    status: 'live',
+  },
+  {
+    id: '7',
+    lotNumber: 18,
+    title: '2020 Caterpillar 938M Wheel Loader',
+    currentBid: 165000,
+    nextMinimumBid: 167000,
+    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    location: 'Salt Lake City, UT, USA',
+    usage: '1,650 hours',
+    description: 'Cat 938M wheel loader with high-lift arms, ride control, and premium operator station.',
+    closingTime: '2024-08-15T14:50:00Z',
+    bidCount: 31,
+    status: 'live',
+  },
+  {
+    id: '8',
+    lotNumber: 22,
+    title: '2018 Takeuchi TB290 Mini Excavator',
+    currentBid: 28000,
+    nextMinimumBid: 29000,
+    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    location: 'Portland, OR, USA',
+    usage: '2,800 hours',
+    description: 'Compact Takeuchi mini excavator with rubber tracks, auxiliary hydraulics, and canopy top.',
+    closingTime: '2024-08-15T14:55:00Z',
+    bidCount: 12,
+    status: 'live',
+  },
+  {
+    id: '9',
+    lotNumber: 25,
+    title: '2019 JLG 600S Aerial Lift',
+    currentBid: 48000,
+    nextMinimumBid: 49000,
+    imageUrl: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+    location: 'Nashville, TN, USA',
+    usage: '1,450 hours',
+    description: 'JLG telescopic boom lift with 60ft reach, 4WD, and oscillating axle. Recent inspection completed.',
+    closingTime: '2024-08-15T15:00:00Z',
+    bidCount: 9,
+    status: 'live',
+  },
+  {
+    id: '10',
+    lotNumber: 28,
+    title: '2017 Liebherr L556 Wheel Loader',
+    currentBid: 145000,
+    nextMinimumBid: 147000,
+    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    location: 'Chicago, IL, USA',
+    usage: '3,850 hours',
+    description: 'Liebherr wheel loader with bucket and fork attachments, joystick controls, and air conditioning.',
+    closingTime: '2024-08-15T15:05:00Z',
+    bidCount: 22,
+    status: 'live',
+  },
+  {
+    id: '11',
+    lotNumber: 30,
+    title: '2020 Kobelco SK210LC Excavator',
+    currentBid: 118000,
+    nextMinimumBid: 120000,
+    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    location: 'Las Vegas, NV, USA',
+    usage: '2,100 hours',
+    description: 'Kobelco excavator with long reach arm, hydraulic thumb, and premium operator cab package.',
+    closingTime: '2024-08-15T15:10:00Z',
+    bidCount: 17,
+    status: 'live',
+  },
+  {
+    id: '12',
+    lotNumber: 35,
+    title: '2018 Hamm HD140 Compactor',
+    currentBid: 78000,
+    nextMinimumBid: 79000,
+    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    location: 'Miami, FL, USA',
+    usage: '2,650 hours',
+    description: 'Hamm double drum vibratory compactor with oscillation, water spray system, and ROPS cabin.',
+    closingTime: '2024-08-15T15:15:00Z',
+    bidCount: 14,
+    status: 'live',
+  },
 ];
 
-export default function LiveAuctionPage() {
+export default function TimedAuctionPage() {
   const { isInWatchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
   const { isAuthenticated } = useAuth();
-  const [items, setItems] = useState(LIVE_AUCTION_ITEMS);
+  const [items, setItems] = useState(TIMED_AUCTION_ITEMS);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('lot');
@@ -164,7 +276,7 @@ export default function LiveAuctionPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-bold">Live Auction</h1>
+          <h1 className="text-3xl font-bold">Timed Auction</h1>
           <p className="text-muted-foreground">Showing 1-60 of {filteredItems.length} results</p>
         </div>
         
@@ -262,7 +374,7 @@ export default function LiveAuctionPage() {
                   <div className="flex justify-between items-center">
                     <div>
                       <p className="text-sm text-muted-foreground">High bid</p>
-                      <p className="text-xl font-bold">CA${item.currentBid.toLocaleString()}</p>
+                      <p className="text-xl font-bold">${item.currentBid.toLocaleString()}</p>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-sm">
@@ -289,8 +401,8 @@ export default function LiveAuctionPage() {
                 </div>
               ) : (
                 <div className="text-center py-4">
-                  <p className="text-lg font-bold">CA${item.currentBid.toLocaleString()}</p>
-                  <p className="text-sm text-muted-foreground">Sold Aug 13, 2025</p>
+                  <p className="text-lg font-bold">${item.currentBid.toLocaleString()}</p>
+                  <p className="text-sm text-muted-foreground">Sold Aug 13, 2024</p>
                 </div>
               )}
             </CardContent>
