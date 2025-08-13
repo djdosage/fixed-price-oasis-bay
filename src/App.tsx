@@ -11,6 +11,7 @@ import Marketplace from "./pages/Marketplace";
 import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";
 import AuctionsPage from "./pages/Auctions";
+import LiveAuction from "./pages/LiveAuction";
 import Watchlist from "./pages/Watchlist";
 
 const queryClient = new QueryClient();
@@ -29,7 +30,9 @@ const App = () => (
                 <Route path="/marketplace" element={<Marketplace />} />
                 <Route path="/marketplace/product/:id" element={<ProductDetail />} />
                 <Route path="/auctions" element={<AuctionsPage />} />
+                <Route path="/live-auction" element={<LiveAuction />} />
                 <Route path="/auctions/product/:id" element={<ProductDetail />} />
+                <Route path="/live-auction/product/:id" element={<ProductDetail />} />
                 <Route path="/watchlist" element={<Watchlist />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
