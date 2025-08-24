@@ -33,9 +33,6 @@ export function Navbar() {
               <Button variant="ghost" asChild>
                 <Link to="/auctions">Auctions</Link>
               </Button>
-              <Button variant="ghost" asChild>
-                <Link to="/live-auction">Live Auction</Link>
-              </Button>
             </div>
           </div>
 

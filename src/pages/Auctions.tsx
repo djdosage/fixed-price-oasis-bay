@@ -2,9 +2,10 @@ import { useWatchlist } from '@/contexts/WatchlistContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { useNavigate } from 'react-router-dom';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Heart, Grid, List, SlidersHorizontal, Timer, Filter, SortAsc } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LoginDialog } from '@/components/LoginDialog';
 import { ProductCard } from '@/components/ProductCard';
 
@@ -69,13 +70,68 @@ const AUCTION_ITEMS: AuctionItem[] = [
   },
 ];
 
+// Live auction items for the timed auction tab
+const LIVE_AUCTION_ITEMS: AuctionItem[] = [
+  {
+    id: 'live-1',
+    title: 'CAT 320D Hydraulic Excavator',
+    price: 145000,
+    currentBid: 145000,
+    nextMinimumBid: 147000,
+    description: '2018 CAT 320D with 2,400 hours. Excellent condition, full maintenance records.',
+    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    location: 'Houston, TX',
+    seller: 'Texas Heavy Equipment',
+    endsAt: '2024-06-08T16:30:00Z',
+    bids: 23,
+    auctionEvent: 'Live Timed Auction',
+  },
+  {
+    id: 'live-2',
+    title: 'John Deere 544K Wheel Loader',
+    price: 125000,
+    currentBid: 125000,
+    nextMinimumBid: 127000,
+    description: '2019 John Deere 544K with 1,800 hours. Like new condition.',
+    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    location: 'Dallas, TX',
+    seller: 'Southwest Auctions',
+    endsAt: '2024-06-08T17:15:00Z',
+    bids: 18,
+    auctionEvent: 'Live Timed Auction',
+  },
+  {
+    id: 'live-3',
+    title: 'Komatsu D65PX Dozer',
+    price: 95000,
+    currentBid: 95000,
+    nextMinimumBid: 97000,
+    description: '2017 Komatsu D65PX with 3,200 hours. Well maintained with new undercarriage.',
+    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    location: 'Austin, TX',
+    seller: 'Central Texas Equipment',
+    endsAt: '2024-06-08T18:00:00Z',
+    bids: 15,
+    auctionEvent: 'Live Timed Auction',
+  },
+];
+
 export default function AuctionsPage() {
   const { isInWatchlist, addToWatchlist, removeFromWatchlist } = useWatchlist();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [showLoginDialog, setShowLoginDialog] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'upcoming');
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab && ['upcoming', 'live'].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
 
   const handleWatchlistClick = (item: AuctionItem) => {
     if (!isAuthenticated) {
@@ -112,33 +168,79 @@ export default function AuctionsPage() {
     return `${minutes}m`;
   };
 
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setSearchParams({ tab: value });
+  };
+
   return (
     <>
       <div className="container mx-auto p-6">
-        <div className="flex justify-end gap-4 mb-6">
-          <Button variant="outline" size="sm">
-            <Filter className="h-4 w-4 mr-2" />
-            Filter
-          </Button>
-          <Button variant="outline" size="sm">
-            <SortAsc className="h-4 w-4 mr-2" />
-            Sort
-          </Button>
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold mb-2">Auctions</h1>
+          <p className="text-muted-foreground">Browse upcoming auctions and live timed events</p>
         </div>
 
-        <div className={`grid gap-6 ${
-          viewMode === 'grid' 
-            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
-            : 'grid-cols-1'
-        }`}>
-          {AUCTION_ITEMS.map((item) => (
-            <ProductCard
-              key={item.id}
-              {...item}
-              type="auction"
-            />
-          ))}
-        </div>
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+          <TabsList className="grid w-full grid-cols-2 max-w-md">
+            <TabsTrigger value="upcoming">Upcoming Auctions</TabsTrigger>
+            <TabsTrigger value="live">Live Timed Auction</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="upcoming" className="mt-6">
+            <div className="flex justify-end gap-4 mb-6">
+              <Button variant="outline" size="sm">
+                <Filter className="h-4 w-4 mr-2" />
+                Filter
+              </Button>
+              <Button variant="outline" size="sm">
+                <SortAsc className="h-4 w-4 mr-2" />
+                Sort
+              </Button>
+            </div>
+
+            <div className={`grid gap-6 ${
+              viewMode === 'grid' 
+                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
+                : 'grid-cols-1'
+            }`}>
+              {AUCTION_ITEMS.map((item) => (
+                <ProductCard
+                  key={item.id}
+                  {...item}
+                  type="auction"
+                />
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="live" className="mt-6">
+            <div className="flex justify-end gap-4 mb-6">
+              <Button variant="outline" size="sm">
+                <Filter className="h-4 w-4 mr-2" />
+                Filter
+              </Button>
+              <Button variant="outline" size="sm">
+                <SortAsc className="h-4 w-4 mr-2" />
+                Sort
+              </Button>
+            </div>
+
+            <div className={`grid gap-6 ${
+              viewMode === 'grid' 
+                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
+                : 'grid-cols-1'
+            }`}>
+              {LIVE_AUCTION_ITEMS.map((item) => (
+                <ProductCard
+                  key={item.id}
+                  {...item}
+                  type="auction"
+                />
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
       <LoginDialog isOpen={showLoginDialog} onClose={() => setShowLoginDialog(false)} />
