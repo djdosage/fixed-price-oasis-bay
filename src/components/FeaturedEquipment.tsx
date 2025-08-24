@@ -3,6 +3,12 @@ import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ProductCard } from '@/components/ProductCard';
 
+// Import equipment images
+import cat320DImg from '@/assets/cat-320d-excavator.jpg';
+import komatsuDozerImg from '@/assets/komatsu-d65px-dozer.jpg';
+import komatsuLoaderImg from '@/assets/komatsu-wa380-loader.jpg';
+import mobileCraneImg from '@/assets/mobile-crane.jpg';
+
 // Mock data for featured equipment
 const FEATURED_EQUIPMENT = [
   {
@@ -10,7 +16,7 @@ const FEATURED_EQUIPMENT = [
     title: '2022 Komatsu PC360LC-11 Excavator',
     price: 285000,
     description: 'Low hours, excellent condition, full maintenance history',
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: cat320DImg,
     location: 'Houston, TX',
     seller: 'Equipment Direct',
     type: 'marketplace' as const,
@@ -20,7 +26,7 @@ const FEATURED_EQUIPMENT = [
     title: '2021 CAT D6 XE Dozer',
     price: 425000,
     description: 'Electric drive system, GPS ready, like new condition',
-    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    imageUrl: komatsuDozerImg,
     location: 'Phoenix, AZ',
     seller: 'CAT Certified Dealer',
     type: 'marketplace' as const,
@@ -30,7 +36,7 @@ const FEATURED_EQUIPMENT = [
     title: '2023 Volvo A45G Articulated Hauler',
     price: 565000,
     description: 'Only 500 hours, full warranty, ready to work',
-    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    imageUrl: komatsuLoaderImg,
     location: 'Atlanta, GA',
     seller: 'Volvo Construction',
     type: 'marketplace' as const,
@@ -40,7 +46,7 @@ const FEATURED_EQUIPMENT = [
     title: '2022 Liebherr LTM 1100-5.2 Crane',
     price: 985000,
     description: 'All-terrain mobile crane, perfect condition',
-    imageUrl: 'https://images.unsplash.com/photo-1570452165860-ec0d8e0c5c5e?w=400&h=300&fit=crop',
+    imageUrl: mobileCraneImg,
     location: 'Miami, FL',
     seller: 'Crane Specialists',
     type: 'marketplace' as const,

@@ -9,6 +9,9 @@ import { useAuth } from '@/contexts/AuthContext';
 import { LoginDialog } from '@/components/LoginDialog';
 import { useState } from "react";
 
+// Import equipment image
+import catD6DozerImg from '@/assets/cat-d6-dozer.jpg';
+
 const ProductDetail = () => {
   const { id } = useParams();
   const location = useLocation();
@@ -25,7 +28,7 @@ const ProductDetail = () => {
     currentBid: 125000,
     nextMinimumBid: 126000,
     description: "Well-maintained Caterpillar 320 Excavator with low hours. Features include air conditioning, backup camera, and GPS system. Recently serviced with new tracks and hydraulic system inspection.",
-    imageUrl: "https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=800",
+    imageUrl: catD6DozerImg,
     location: "Dallas, TX",
     seller: "Heavy Equipment Solutions",
     auctionEvent: isAuction ? "June Heavy Equipment Auction" : undefined,

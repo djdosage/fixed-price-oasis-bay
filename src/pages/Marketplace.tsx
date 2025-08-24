@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Filter, SortAsc } from 'lucide-react';
 import { ProductCard } from '@/components/ProductCard';
 
+// Import equipment images
+import cat320DImg from '@/assets/cat-320d-excavator.jpg';
+import komatsuDozerImg from '@/assets/komatsu-d65px-dozer.jpg';
+import heavyEquipmentAuctionImg from '@/assets/heavy-equipment-auction.jpg';
+
 // Mock data for marketplace items
 const MARKETPLACE_ITEMS = [
   {
@@ -10,7 +15,7 @@ const MARKETPLACE_ITEMS = [
     title: 'Caterpillar 320 Excavator',
     price: 125000,
     description: 'Well-maintained excavator with low hours. Features include air conditioning and GPS.',
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: cat320DImg,
     location: 'Dallas, TX',
     seller: 'Premium Equipment Co.',
   },
@@ -19,7 +24,7 @@ const MARKETPLACE_ITEMS = [
     title: 'John Deere 350G Excavator',
     price: 145000,
     description: 'Excellent condition with recent service. Includes multiple buckets.',
-    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    imageUrl: komatsuDozerImg,
     location: 'Houston, TX',
     seller: 'Texas Heavy Machinery',
   },
@@ -31,7 +36,7 @@ export default function MarketplacePage() {
       {/* Hero Section */}
       <section className="relative h-64 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1541976590-713941681591?w=1200&h=400&fit=crop"
+          src={heavyEquipmentAuctionImg}
           alt="Construction site"
           className="w-full h-full object-cover brightness-75"
         />

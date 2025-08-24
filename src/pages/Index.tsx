@@ -4,6 +4,14 @@ import { ProductCard } from "@/components/ProductCard";
 import { EventCard } from "@/components/EventCard";
 import { FeaturedEquipment } from "@/components/FeaturedEquipment";
 
+// Import equipment images
+import telehandlerImg from '@/assets/telehandler-forklift.jpg';
+import constructionLotImg from '@/assets/construction-equipment-lot.jpg';
+import skidSteerImg from '@/assets/skid-steer-loader.jpg';
+import heavyEquipmentAuctionImg from '@/assets/heavy-equipment-auction.jpg';
+import catExcavatorImg from '@/assets/cat-320d-excavator.jpg';
+import mobileCraneImg from '@/assets/mobile-crane.jpg';
+
 const Index = () => {
   const featuredAuctions = [
     {
@@ -13,7 +21,7 @@ const Index = () => {
       currentBid: 18500,
       nextMinimumBid: 19000,
       description: 'Fleet of well-maintained Ford Transit vans, perfect for delivery or service businesses.',
-      imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=300&fit=crop',
+      imageUrl: telehandlerImg,
       location: 'Chicago, IL',
       seller: 'Fleet Solutions Inc.',
       auctionEvent: 'June Commercial Vehicle Auction',
@@ -27,7 +35,7 @@ const Index = () => {
       currentBid: 45300,
       nextMinimumBid: 46000,
       description: 'Complete construction equipment package including tools, machinery, and safety gear.',
-      imageUrl: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+      imageUrl: constructionLotImg,
       location: 'Denver, CO',
       seller: 'Mountain Construction Co.',
       auctionEvent: 'June Equipment Auction',
@@ -41,7 +49,7 @@ const Index = () => {
       currentBid: 3200,
       nextMinimumBid: 3300,
       description: 'Comprehensive set of professional-grade tools, perfect for contractors or workshops.',
-      imageUrl: 'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=300&fit=crop',
+      imageUrl: skidSteerImg,
       location: 'Phoenix, AZ',
       seller: 'Pro Tools Direct',
       auctionEvent: 'June Tools & Equipment Auction',
@@ -55,7 +63,7 @@ const Index = () => {
       id: 'event-1',
       eventName: 'Dallas Heavy Equipment Auction',
       country: 'United States',
-      eventPhoto: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+      eventPhoto: heavyEquipmentAuctionImg,
       startDate: '2024-08-15T09:00:00Z',
       endDate: '2024-08-17T17:00:00Z',
       closingDate: '2024-08-17T15:30:00Z',
@@ -67,7 +75,7 @@ const Index = () => {
       id: 'event-2',
       eventName: 'Toronto Industrial Equipment Sale',
       country: 'Canada',
-      eventPhoto: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop',
+      eventPhoto: catExcavatorImg,
       startDate: '2024-08-20T08:00:00Z',
       endDate: '2024-08-22T16:00:00Z',
       closingDate: '2024-08-22T14:00:00Z',
@@ -79,7 +87,7 @@ const Index = () => {
       id: 'event-3',
       eventName: 'Melbourne Mining Equipment Auction',
       country: 'Australia',
-      eventPhoto: 'https://images.unsplash.com/photo-1580947265985-e4b7ad3c4f1f?w=400&h=300&fit=crop',
+      eventPhoto: mobileCraneImg,
       startDate: '2024-08-25T10:00:00Z',
       endDate: '2024-08-27T18:00:00Z',
       closingDate: '2024-08-27T16:45:00Z',

@@ -8,6 +8,20 @@ import { Heart, Grid, List, Search, Gavel, Timer, MapPin, Eye } from 'lucide-rea
 import { useWatchlist } from '@/contexts/WatchlistContext';
 import { useAuth } from '@/contexts/AuthContext';
 
+// Import equipment images
+import constructionLotImg from '@/assets/construction-equipment-lot.jpg';
+import komatsuLoaderImg from '@/assets/komatsu-wa380-loader.jpg';
+import skidSteerImg from '@/assets/skid-steer-loader.jpg';
+import catExcavatorImg from '@/assets/cat-320d-excavator.jpg';
+import telehandlerImg from '@/assets/telehandler-forklift.jpg';
+import soilCompactorImg from '@/assets/soil-compactor.jpg';
+import cat320DImg from '@/assets/cat-320d-excavator.jpg';
+import komatsuDozerImg from '@/assets/komatsu-d65px-dozer.jpg';
+import volvoExcavatorImg from '@/assets/volvo-ec300e-excavator.jpg';
+import johnDeereLoaderImg from '@/assets/john-deere-544k-loader.jpg';
+import mobileCraneImg from '@/assets/mobile-crane.jpg';
+import catD6DozerImg from '@/assets/cat-d6-dozer.jpg';
+
 interface LiveAuctionItem {
   id: string;
   lotNumber: number;
@@ -31,7 +45,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2019 Caterpillar 320 Excavator',
     currentBid: 85000,
     nextMinimumBid: 86000,
-    imageUrl: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+    imageUrl: constructionLotImg,
     location: 'Montgomery, AL, USA',
     usage: '3,250 hours',
     description: 'Well-maintained Cat 320 excavator with hydraulic thumb, A/C, backup camera, and GPS system. Recent service completed.',
@@ -45,7 +59,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2020 Volvo L60H Wheel Loader',
     currentBid: 125000,
     nextMinimumBid: 127000,
-    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    imageUrl: komatsuLoaderImg,
     location: 'Denver, CO, USA',
     usage: '2,180 hours',
     description: 'Volvo L60H wheel loader with quick coupler, ride control, and premium cab package. Excellent condition.',
@@ -59,7 +73,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2018 John Deere 350G Dozer',
     currentBid: 95000,
     nextMinimumBid: 0,
-    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    imageUrl: skidSteerImg,
     location: 'Atlanta, GA, USA',
     usage: '4,100 hours',
     description: 'John Deere 350G dozer with 6-way blade, ripper, and undercarriage in good condition. Ready to work.',
@@ -73,7 +87,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2021 Komatsu PC210LC Excavator',
     currentBid: 135000,
     nextMinimumBid: 137000,
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: catExcavatorImg,
     location: 'Houston, TX, USA',
     usage: '1,850 hours',
     description: 'Low-hour Komatsu excavator with hydraulic thumb, premium cab, and full maintenance records.',
@@ -87,7 +101,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2017 Bobcat S770 Skid Steer',
     currentBid: 42000,
     nextMinimumBid: 43000,
-    imageUrl: 'https://images.unsplash.com/photo-1609824200163-8fa3b82b83de?w=400&h=300&fit=crop',
+    imageUrl: telehandlerImg,
     location: 'Phoenix, AZ, USA',
     usage: '2,950 hours',
     description: 'Bobcat S770 skid steer with high-flow hydraulics, enclosed cab, and multiple attachment compatibility.',
@@ -101,7 +115,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2019 Case 586H Forklift',
     currentBid: 35000,
     nextMinimumBid: 36000,
-    imageUrl: 'https://images.unsplash.com/photo-1563330232-57114bb0823c?w=400&h=300&fit=crop',
+    imageUrl: soilCompactorImg,
     location: 'Jacksonville, FL, USA',
     usage: '3,200 hours',
     description: 'Case rough terrain forklift with 4WD, side shift, and fork positioner. Well maintained.',
@@ -115,7 +129,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2020 Caterpillar 938M Wheel Loader',
     currentBid: 165000,
     nextMinimumBid: 167000,
-    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    imageUrl: cat320DImg,
     location: 'Salt Lake City, UT, USA',
     usage: '1,650 hours',
     description: 'Cat 938M wheel loader with high-lift arms, ride control, and premium operator station.',
@@ -129,7 +143,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2018 Takeuchi TB290 Mini Excavator',
     currentBid: 28000,
     nextMinimumBid: 29000,
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: komatsuDozerImg,
     location: 'Portland, OR, USA',
     usage: '2,800 hours',
     description: 'Compact Takeuchi mini excavator with rubber tracks, auxiliary hydraulics, and canopy top.',
@@ -143,7 +157,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2019 JLG 600S Aerial Lift',
     currentBid: 48000,
     nextMinimumBid: 49000,
-    imageUrl: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop',
+    imageUrl: volvoExcavatorImg,
     location: 'Nashville, TN, USA',
     usage: '1,450 hours',
     description: 'JLG telescopic boom lift with 60ft reach, 4WD, and oscillating axle. Recent inspection completed.',
@@ -157,7 +171,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2017 Liebherr L556 Wheel Loader',
     currentBid: 145000,
     nextMinimumBid: 147000,
-    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    imageUrl: johnDeereLoaderImg,
     location: 'Chicago, IL, USA',
     usage: '3,850 hours',
     description: 'Liebherr wheel loader with bucket and fork attachments, joystick controls, and air conditioning.',
@@ -171,7 +185,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2020 Kobelco SK210LC Excavator',
     currentBid: 118000,
     nextMinimumBid: 120000,
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: mobileCraneImg,
     location: 'Las Vegas, NV, USA',
     usage: '2,100 hours',
     description: 'Kobelco excavator with long reach arm, hydraulic thumb, and premium operator cab package.',
@@ -185,7 +199,7 @@ const TIMED_AUCTION_ITEMS: LiveAuctionItem[] = [
     title: '2018 Hamm HD140 Compactor',
     currentBid: 78000,
     nextMinimumBid: 79000,
-    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    imageUrl: catD6DozerImg,
     location: 'Miami, FL, USA',
     usage: '2,650 hours',
     description: 'Hamm double drum vibratory compactor with oscillation, water spray system, and ROPS cabin.',
