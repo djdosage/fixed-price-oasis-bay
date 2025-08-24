@@ -9,6 +9,14 @@ import { useState, useEffect } from 'react';
 import { LoginDialog } from '@/components/LoginDialog';
 import { ProductCard } from '@/components/ProductCard';
 
+// Import heavy equipment images
+import catD6DozerImg from '@/assets/cat-d6-dozer.jpg';
+import volvoExcavatorImg from '@/assets/volvo-ec300e-excavator.jpg';
+import komatsuLoaderImg from '@/assets/komatsu-wa380-loader.jpg';
+import cat320DImg from '@/assets/cat-320d-excavator.jpg';
+import johnDeereLoaderImg from '@/assets/john-deere-544k-loader.jpg';
+import komatsuDozerImg from '@/assets/komatsu-d65px-dozer.jpg';
+
 interface AuctionItem {
   id: string;
   title: string;
@@ -33,7 +41,7 @@ const AUCTION_ITEMS: AuctionItem[] = [
     currentBid: 85000,
     nextMinimumBid: 86000,
     description: 'Low-hour Cat D6 Dozer with ripper. Well maintained and ready to work.',
-    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    imageUrl: catD6DozerImg,
     location: 'Montgomery, AL',
     seller: 'Southern Auction Company',
     endsAt: '2024-06-10T14:00:00Z',
@@ -47,7 +55,7 @@ const AUCTION_ITEMS: AuctionItem[] = [
     currentBid: 110000,
     nextMinimumBid: 112000,
     description: 'Excellent condition Volvo excavator with low hours and full maintenance history.',
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: volvoExcavatorImg,
     location: 'Atlanta, GA',
     seller: 'East Coast Auctions',
     endsAt: '2024-06-11T18:00:00Z',
@@ -61,7 +69,7 @@ const AUCTION_ITEMS: AuctionItem[] = [
     currentBid: 95000,
     nextMinimumBid: 96000,
     description: 'Well-maintained wheel loader with new tires and recent service.',
-    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    imageUrl: komatsuLoaderImg,
     location: 'Jacksonville, FL',
     seller: 'Florida Equipment Auctions',
     endsAt: '2024-06-12T20:00:00Z',
@@ -79,7 +87,7 @@ const LIVE_AUCTION_ITEMS: AuctionItem[] = [
     currentBid: 145000,
     nextMinimumBid: 147000,
     description: '2018 CAT 320D with 2,400 hours. Excellent condition, full maintenance records.',
-    imageUrl: 'https://images.unsplash.com/photo-1581093458791-9f3c3900b7d2?w=400&h=300&fit=crop',
+    imageUrl: cat320DImg,
     location: 'Houston, TX',
     seller: 'Texas Heavy Equipment',
     endsAt: '2024-06-08T16:30:00Z',
@@ -93,7 +101,7 @@ const LIVE_AUCTION_ITEMS: AuctionItem[] = [
     currentBid: 125000,
     nextMinimumBid: 127000,
     description: '2019 John Deere 544K with 1,800 hours. Like new condition.',
-    imageUrl: 'https://images.unsplash.com/photo-1572893264577-13fea76a1764?w=400&h=300&fit=crop',
+    imageUrl: johnDeereLoaderImg,
     location: 'Dallas, TX',
     seller: 'Southwest Auctions',
     endsAt: '2024-06-08T17:15:00Z',
@@ -107,7 +115,7 @@ const LIVE_AUCTION_ITEMS: AuctionItem[] = [
     currentBid: 95000,
     nextMinimumBid: 97000,
     description: '2017 Komatsu D65PX with 3,200 hours. Well maintained with new undercarriage.',
-    imageUrl: 'https://images.unsplash.com/photo-1579633711380-cc4fd8ea2b31?w=400&h=300&fit=crop',
+    imageUrl: komatsuDozerImg,
     location: 'Austin, TX',
     seller: 'Central Texas Equipment',
     endsAt: '2024-06-08T18:00:00Z',
